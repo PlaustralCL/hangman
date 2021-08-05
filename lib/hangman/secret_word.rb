@@ -26,6 +26,3 @@ module Hangman
 
   end
 end
-
-test_word = Hangman::SecretWord.new
-p test_word.word
