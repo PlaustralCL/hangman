@@ -3,7 +3,11 @@
 module Hangman
   # Generate the secret word from the dictionary file
   class SecretWord
+    private
+
     attr_reader :dictionary, :word
+
+    public
 
     def initialize(word = nil)
       @dictionary = read_dictionary
@@ -16,6 +20,8 @@ module Hangman
         return word if word.length >= 5 && word.length <= 12
       end
     end
+
+    private
 
     def read_dictionary
       @dictionary = File.readlines("5desk.txt")
