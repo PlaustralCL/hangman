@@ -11,8 +11,8 @@ module Hangman
 
     def new_word
       loop do
-        dictionary = File.readlines("5desk.txt")
-        dictionary = dictionary.map(&:chomp)
+        @dictionary = File.readlines("5desk.txt")
+        @dictionary = dictionary.map(&:chomp)
         word = dictionary.sample.downcase
         return word if word.length >= 5 && word.length <= 12
       end
