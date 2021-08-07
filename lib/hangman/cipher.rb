@@ -8,22 +8,32 @@ module Hangman
     def initialize(secret_word)
       @secret_word = secret_word
       @cipher = []
+      blank_cipher
     end
+
+    def update_cipher(letter)
+      indicies = find_indicies(letter)
+      indicies.each do |index|
+        # Multiply by 2 to account for the blank space between letters
+        @cipher[index * 2] = letter
+      end
+    end
+
+    def show_cipher
+      cipher.join
+    end
+
+    def solved?
+      cipher.none?("_")
+    end
+
+    private
 
     def blank_cipher
       secret_word.split("").each do
         cipher.push("_")
         cipher.push(" ")
       end
-      cipher.join
-    end
-
-    def update_cipher(letter)
-      indicies = find_indicies(letter)
-      indicies.each do |index|
-        @cipher[index * 2] = letter
-      end
-      cipher.join
     end
 
     def find_indicies(letter)
