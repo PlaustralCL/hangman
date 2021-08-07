@@ -5,9 +5,11 @@ module Hangman
   class SecretWord
     private
 
-    attr_reader :dictionary, :word
+    attr_reader :dictionary
 
     public
+
+    attr_reader :word
 
     def initialize(word = nil)
       @dictionary = read_dictionary

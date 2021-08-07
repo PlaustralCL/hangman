@@ -23,4 +23,11 @@ class SecretWordTest < Minitest::Test
     word = random_word
     assert(word.length <= 12, "The word is too long")
   end
+
+  def test_word_maintains_new_word
+    word_source = Hangman::SecretWord.new
+    secret_word = word_source.new_word
+    word_check = word_source.word
+    assert_equal(secret_word, word_check)
+  end
 end
