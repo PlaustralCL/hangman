@@ -31,15 +31,34 @@ module Hangman
 
     def play_one_round
       player.new_guess
-      if word.include?(player_guess)
+      if keywords.include?(player_guess)
+        evaluate_keywords
+      elsif word.include?(player_guess)
         cipher.update_cipher(player_guess)
         return
       end
       player.update_wrong_guesses
     end
 
+    at_exit do
+      puts "Thanks for playing"
+    end
+
+    def evaluate_keywords
+      player_guess == "save" ? save_game : exit
+    end
+
+    def save_game
+      puts "Save game..."
+      exit
+    end
+
     def player_guess
       player.guess
+    end
+
+    def keywords
+      %w[save quit]
     end
 
     def word

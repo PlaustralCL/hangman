@@ -16,8 +16,7 @@ module Hangman
       loop do
         @guess = gets.chomp.downcase
         puts ""
-        evaluate_keywords if guess == "save" || guess == "quit"
-        return guess if valid_input?
+        return guess if (guess == "save" || guess == "quit") || valid_input?
 
         guess_message
       end
@@ -34,18 +33,7 @@ module Hangman
 
     private
 
-    at_exit do
-      puts "Thanks for playing"
-    end
 
-    def evaluate_keywords
-      guess == "save" ? save_game : exit
-    end
-
-    def save_game
-      puts "Save game..."
-      exit
-    end
 
     def valid_input?
       @guess.length == 1 && @guess =~ /[a-z]{1}/
