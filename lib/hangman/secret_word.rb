@@ -14,6 +14,7 @@ module Hangman
     def initialize(word = nil)
       @dictionary = read_dictionary
       @word = word
+      new_word
     end
 
     def new_word

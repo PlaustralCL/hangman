@@ -9,10 +9,8 @@ secret_word = Hangman::SecretWord.new("hangman")
 cipher = Hangman::Cipher.new(secret_word.word)
 player = Hangman::Player.new
 
-secret_word.new_word
-
 game = Hangman::Game.new(secret_word, cipher, player)
 
 game.play
-puts "You won!" if cipher.solved?
-puts "Better luck next time" unless cipher.solved?
+puts "You guessed the word!" if cipher.solved?
+puts "Better luck next time. The secret word was #{secret_word.word}." unless cipher.solved?
