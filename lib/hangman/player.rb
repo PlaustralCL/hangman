@@ -16,6 +16,7 @@ module Hangman
       loop do
         @guess = gets.chomp.downcase
         puts ""
+        evaluate_keywords if guess == "save" || guess == "quit"
         return guess if valid_input?
 
         guess_message
@@ -29,6 +30,21 @@ module Hangman
 
     def wrong_guesses_string
       wrong_guesses.join
+    end
+
+    private
+
+    at_exit do
+      puts "Thanks for playing"
+    end
+
+    def evaluate_keywords
+      guess == "save" ? save_game : exit
+    end
+
+    def save_game
+      puts "Save game..."
+      exit
     end
 
     def valid_input?
