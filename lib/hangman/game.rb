@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "yaml"
+
 module Hangman
 
   # Tracks the status of the game
@@ -14,6 +16,7 @@ module Hangman
 
     def play
       show_cipher
+      puts "Wrong guesses: #{player.wrong_guesses_string}"
       while player.wrong_guesses.length < allowed_wrong_guesses
         play_one_round
         show_cipher
@@ -49,7 +52,16 @@ module Hangman
     end
 
     def save_game
-      puts "Save game..."
+      game_state = { secret_word: word, cipher: cipher.cipher, wrong_guesses: player.wrong_guesses }
+      yaml = YAML::dump(game_state)
+
+      Dir.mkdir("saved_games") unless Dir.exist?("saved_games")
+      filename = "saved_games/test_save.yaml"
+      File.open(filename, "w") do |file|
+        file.puts yaml
+      end
+
+      puts "The game is saved"
       exit
     end
 
@@ -67,7 +79,7 @@ module Hangman
 
     def allowed_wrong_guesses
       # Twice the number of actual wrong guesses to account for the spaces
-      # between the letters
+      # between the letters. For example, 6 guesses needs a value of 12 here
       12
     end
   end

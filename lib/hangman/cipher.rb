@@ -5,10 +5,10 @@ module Hangman
   class Cipher
     attr_reader :cipher, :secret_word
 
-    def initialize(secret_word)
+    def initialize(secret_word, cipher = nil)
       @secret_word = secret_word
-      @cipher = []
-      blank_cipher
+      @cipher = cipher
+      _cipher
     end
 
     def update_cipher(letter)
@@ -28,6 +28,11 @@ module Hangman
     end
 
     private
+
+    def _cipher
+      @cipher ||= []
+      blank_cipher if cipher.length == 0
+    end
 
     def blank_cipher
       secret_word.split("").each do

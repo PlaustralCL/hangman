@@ -6,9 +6,10 @@ module Hangman
   class Player
     attr_reader :guess, :wrong_guesses
 
-    def initialize
-      @wrong_guesses = []
+    def initialize(wrong_guesses = nil)
+      @wrong_guesses = wrong_guesses
       @guess = ""
+      _wrong_guesses
     end
 
     def new_guess
@@ -33,7 +34,9 @@ module Hangman
 
     private
 
-
+    def _wrong_guesses
+      @wrong_guesses ||= []
+    end
 
     def valid_input?
       @guess.length == 1 && @guess =~ /[a-z]{1}/
