@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "yaml"
+require_relative "./game_file"
 
 module Hangman
 
@@ -56,15 +57,11 @@ module Hangman
 
     def save_game
       game_state = { secret_word: word, cipher: cipher.cipher, wrong_guesses: player.wrong_guesses }
-      yaml = YAML::dump(game_state)
+      yaml = YAML.dump(game_state)
+      game_file = GameFile.new(yaml)
+      game_file.write
 
-      Dir.mkdir("saved_games") unless Dir.exist?("saved_games")
-      filename = "saved_games/test_save.yaml"
-      File.open(filename, "w") do |file|
-        file.puts yaml
-      end
-
-      puts "The game is saved"
+      puts "The game is saved as #{game_file.filename}"
       exit
     end
 
