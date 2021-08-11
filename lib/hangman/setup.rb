@@ -25,9 +25,9 @@ module Hangman
     end
 
     def choose_file(entries)
-      puts "Please select a file by entering a number"
-      file = gets.chomp.to_i
-      entries[file]
+      puts "Please enter the game (#) you would like to play"
+      game_number = gets.chomp.to_i
+      entries[game_number]
     end
 
     def read_file(filename)
@@ -42,8 +42,9 @@ module Hangman
     end
 
     def show_files(entries)
+      puts "\n(#)  File name\n\n"
       entries.each_with_index do |file, index|
-        puts "(#{index})   #{file}"
+        puts "(#{index})   #{file}\n\n"
       end
     end
 
