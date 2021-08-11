@@ -37,7 +37,7 @@ module Hangman
       player.new_guess
       if keywords.include?(guess)
         evaluate_keywords
-      elsif cipher.cipher.include?(guess) || player.wrong_guesses.include?(guess)
+      elsif already_guessed?
         puts "You have already guessed that letter. Please try again"
         return
       elsif word.include?(guess)
@@ -49,6 +49,10 @@ module Hangman
 
     at_exit do
       puts "Thanks for playing"
+    end
+
+    def already_guessed?
+      cipher.cipher.include?(guess) || player.wrong_guesses.include?(guess)
     end
 
     def evaluate_keywords
