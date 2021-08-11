@@ -25,7 +25,7 @@ module Hangman
     end
 
     def choose_file(entries)
-      puts "Please select a file"
+      puts "Please select a file by entering a number"
       file = gets.chomp.to_i
       entries[file]
     end

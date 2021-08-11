@@ -6,28 +6,6 @@ require_relative "./hangman"
 puts "Welcome to hangman"
 puts ""
 
-# def new_game
-#   secret_word = Hangman::SecretWord.new("hangman")
-#   cipher = Hangman::Cipher.new(secret_word.word)
-#   player = Hangman::Player.new
-#   [secret_word, cipher, player]
-# end
-
-# def load_game
-#   # filename = "saved_games/test_save.yaml"
-#   list_files
-#   game_state = YAML::load(File.read(filename))
-#   secret_word = Hangman::SecretWord.new(game_state[:secret_word])
-#   cipher = Hangman::Cipher.new(game_state[:secret_word], game_state[:cipher])
-#   player = Hangman::Player.new(game_state[:wrong_guesses])
-#   [secret_word, cipher, player]
-# end
-
-# def list_files
-#   entries = Dir.entries("saved_games").sort[2..-1]
-#   puts entries
-# end
-
 secret_word = ""
 cipher = ""
 player = ""
@@ -36,10 +14,9 @@ game = Hangman::Setup.new
 puts "Do you want to (1) Load a saved game or (2) Start a new game?"
 game_type = gets.chomp.to_i
 if game_type == 1
-# secret_word, cipher, player = Hangman.load_game
   secret_word, cipher, player = game.load_game
 else
-  secret_word, cipher, player = new_game
+  secret_word, cipher, player = game.new_game
 end
 
 puts ""
