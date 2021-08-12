@@ -38,7 +38,7 @@ module Hangman
     end
 
     def new_game
-      @secret_word = SecretWord.new("hangman")
+      @secret_word = SecretWord.new
       @cipher = Cipher.new(secret_word.word)
       @player = Player.new
       # [secret_word, cipher, player]
@@ -61,9 +61,9 @@ module Hangman
 
     def read_file(filename)
       game_state = YAML.load(File.read(filename))
-      @secret_word = SecretWord.new(game_state[:secret_word])
-      @cipher = Cipher.new(game_state[:secret_word], game_state[:cipher])
-      @player = Player.new(game_state[:wrong_guesses])
+      @secret_word = game_state[:secret_word]
+      @cipher = game_state[:cipher]
+      @player = game_state[:wrong_guesses]
     end
 
     def find_files

@@ -60,7 +60,7 @@ module Hangman
     end
 
     def save_game
-      game_state = { secret_word: word, cipher: cipher.cipher, wrong_guesses: player.wrong_guesses }
+      game_state = { secret_word: secret_word, cipher: cipher, wrong_guesses: player }
       yaml = YAML.dump(game_state)
       game_file = GameFile.new(yaml)
       game_file.write
