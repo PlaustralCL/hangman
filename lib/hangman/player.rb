@@ -14,13 +14,11 @@ module Hangman
 
     def new_guess
       guess_message
-      loop do
-        @guess = gets.chomp.downcase
-        puts ""
-        return guess if (guess == "save" || guess == "quit") || valid_input?
+      @guess = gets.chomp.downcase
+      puts ""
+      return guess if keywords? || valid_input?
 
-        guess_message
-      end
+      new_guess
     end
 
     def update_wrong_guesses
@@ -38,8 +36,21 @@ module Hangman
       @wrong_guesses ||= []
     end
 
+    def evaluate_keywords
+      case guess
+      when "save"
+        save_game
+      when "exit"
+        exit
+      end
+    end
+
     def valid_input?
       @guess.length == 1 && @guess =~ /[a-z]{1}/
+    end
+
+    def keywords?
+      guess == "save" || guess == "quit"
     end
 
     def guess_message

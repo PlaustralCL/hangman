@@ -25,7 +25,7 @@ module Hangman
       options = <<~HEREDOC
         Do you want to:
         (1) Load a saved game
-        (2) Start a new game\n\n
+        (2) Start a new game
       HEREDOC
       puts options
 
@@ -38,7 +38,7 @@ module Hangman
     end
 
     def new_game
-      @secret_word = SecretWord.new
+      @secret_word = SecretWord.new("hangman")
       @cipher = Cipher.new(secret_word.word)
       @player = Player.new
       # [secret_word, cipher, player]

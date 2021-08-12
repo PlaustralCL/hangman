@@ -17,13 +17,13 @@ module Hangman
 
     def play
       show_cipher
-      puts "Wrong guesses: #{player.wrong_guesses_string}"
+      show_wrong_guess
       while player.wrong_guesses.length < allowed_wrong_guesses
         play_one_round
         show_cipher
         break if cipher.solved?
 
-        puts "Wrong guesses: #{player.wrong_guesses_string}\n\n"
+        show_wrong_guess
       end
     end
 
@@ -33,22 +33,25 @@ module Hangman
       puts cipher.show_cipher
     end
 
+    def show_wrong_guess
+      puts "Wrong guesses: #{player.wrong_guesses_string}\n\n"
+    end
+
     def play_one_round
       player.new_guess
+      evaluate_guess
+    end
+
+    def evaluate_guess
       if keywords.include?(guess)
         evaluate_keywords
       elsif already_guessed?
         puts "You have already guessed that letter. Please try again"
-        return
       elsif word.include?(guess)
         cipher.update_cipher(guess)
-        return
+      else
+        player.update_wrong_guesses
       end
-      player.update_wrong_guesses
-    end
-
-    at_exit do
-      puts "Thanks for playing"
     end
 
     def already_guessed?
