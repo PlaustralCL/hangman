@@ -17,8 +17,8 @@ module Hangman
     end
 
     def game_end
-      puts "You guessed the word!" if cipher.solved?
-      puts "Better luck next time. The secret word was #{secret_word.word}." unless cipher.solved?
+      puts "You guessed the word!" if solved?
+      puts "Better luck next time. The secret word was #{secret_word.word}." unless solved?
     end
 
     def choose_game_type
@@ -90,6 +90,10 @@ module Hangman
 
       puts intro
       puts ""
+    end
+
+    def solved?
+      cipher.solved?
     end
   end
 end

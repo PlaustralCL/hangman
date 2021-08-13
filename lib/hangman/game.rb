@@ -18,7 +18,7 @@ module Hangman
     def play
       show_cipher
       show_wrong_guess
-      while player.wrong_guesses.length < allowed_wrong_guesses
+      while current_wrong_guesses < allowed_wrong_guesses
         play_one_round
         show_cipher
         break if cipher.solved?
@@ -86,6 +86,10 @@ module Hangman
       # Twice the number of actual wrong guesses to account for the spaces
       # between the letters. For example, 6 guesses needs a value of 12 here
       12
+    end
+
+    def current_wrong_guesses
+      player.wrong_guesses.length
     end
   end
 end

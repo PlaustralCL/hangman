@@ -3,10 +3,16 @@
 module Hangman
   # Generate the secret word from the dictionary file
   class SecretWord
+    private
+
+    attr_reader :filename
+
+    public
 
     attr_reader :word
 
     def initialize(word = nil)
+      @filename = "5desk.txt"
       @word = word
       new_word
     end
@@ -25,7 +31,7 @@ module Hangman
     private
 
     def dictionary
-      dictionary_file = File.readlines("5desk.txt")
+      dictionary_file = File.readlines(filename)
       dictionary_file.map(&:chomp)
     end
 
