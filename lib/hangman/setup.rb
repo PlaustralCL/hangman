@@ -28,12 +28,12 @@ module Hangman
         (2) Start a new game
       HEREDOC
       puts options
-      game_type = input_number(max)
+      game_type = input_number(max_value: 2)
       game_type == 1 ? saved_game : new_game
     end
 
     def new_game
-      @secret_word = SecretWord.new("hangman")
+      @secret_word = SecretWord.new
       @cipher = Cipher.new(secret_word.word)
       @player = Player.new
       # [secret_word, cipher, player]

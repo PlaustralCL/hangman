@@ -14,7 +14,11 @@ module Hangman
     def new_word
       loop do
         @word ||= dictionary.sample.downcase
-        return word if word.length >= 5 && word.length <= 12
+        return word if word_length >= 5 && word_length <= 12
+
+        # it is necessary to reset @word if it doesn't meet the criteria
+        # otherwise it will end up in an endless loop.
+        @word = nil
       end
     end
 
@@ -23,6 +27,10 @@ module Hangman
     def dictionary
       dictionary_file = File.readlines("5desk.txt")
       dictionary_file.map(&:chomp)
+    end
+
+    def word_length
+      word.length
     end
   end
 end
