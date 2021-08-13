@@ -28,13 +28,18 @@ module Hangman
         (2) Start a new game
       HEREDOC
       puts options
+      game_type = input_game_type
+      game_type == 1 ? saved_game : new_game
+    end
 
-      game_type = gets.chomp.to_i
-      if game_type == 1
-        saved_game
-      else
-        new_game
+    def input_game_type(game_type = 0)
+      loop do
+        game_type = gets.chomp.to_i
+        break if [1, 2].include?(game_type)
+
+        puts "Please limit your responses to the number '1' or '2'"
       end
+      game_type
     end
 
     def new_game
