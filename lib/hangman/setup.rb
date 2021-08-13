@@ -28,18 +28,8 @@ module Hangman
         (2) Start a new game
       HEREDOC
       puts options
-      game_type = input_game_type
+      game_type = input_number(max)
       game_type == 1 ? saved_game : new_game
-    end
-
-    def input_game_type(game_type = 0)
-      loop do
-        game_type = gets.chomp.to_i
-        break if [1, 2].include?(game_type)
-
-        puts "Please limit your responses to the number '1' or '2'"
-      end
-      game_type
     end
 
     def new_game
@@ -58,18 +48,18 @@ module Hangman
 
     def choose_file(entries)
       puts "Please enter the game (#) you would like to play"
-      game_number = input_file_number(entries.length)
+      game_number = input_number(max_value: entries.length) - 1
       entries[game_number]
     end
 
-    def input_file_number(max_input, game_number = 0)
+    def input_number(max_value:, min_value: 1, selection: 0)
       loop do
-        game_number = gets.chomp.to_i
-        break if Array(1..max_input).include?(game_number)
+        selection = gets.chomp.to_i
+        break if Array(min_value..max_value).include?(selection)
 
-        puts "Please limit your responses to numbers between '1' and '#{max_input}'"
+        puts "Please limit your responses to numbers between '1' and '#{max_value}'"
       end
-      game_number - 1
+      selection
     end
 
     def read_file(filename)
