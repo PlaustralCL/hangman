@@ -53,15 +53,23 @@ module Hangman
       entries = find_files
       show_files(entries)
       filename = "saved_games/#{choose_file(entries)}"
-      # filename = "saved_games/#{filename}"
       read_file(filename)
-      # [secret_word, cipher, player]
     end
 
     def choose_file(entries)
       puts "Please enter the game (#) you would like to play"
-      game_number = gets.chomp.to_i
+      game_number = input_file_number(entries.length)
       entries[game_number]
+    end
+
+    def input_file_number(max_input, game_number = 0)
+      loop do
+        game_number = gets.chomp.to_i
+        break if Array(1..max_input).include?(game_number)
+
+        puts "Please limit your responses to numbers between '1' and '#{max_input}'"
+      end
+      game_number - 1
     end
 
     def read_file(filename)
@@ -78,7 +86,7 @@ module Hangman
     def show_files(entries)
       puts "\n(#)  File name\n\n"
       entries.each_with_index do |file, index|
-        puts "(#{index})   #{file}\n\n"
+        puts "(#{index + 1})   #{file}\n\n"
       end
     end
 
