@@ -33,21 +33,12 @@ module Hangman
       @wrong_guesses ||= []
     end
 
-    def evaluate_keywords
-      case guess
-      when "save"
-        save_game
-      when "exit"
-        exit
-      end
-    end
-
     def input_guess
       loop do
         @guess = gets.chomp.downcase
         break if valid_input?
 
-        puts "Please limit your responses to letters between 'a' - 'z', 'save', or 'quit':"
+        print "Please limit your responses to letters between 'a' - 'z', 'save', or 'quit': ".red
       end
     end
 

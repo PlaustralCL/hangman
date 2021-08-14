@@ -62,7 +62,7 @@ module Hangman
         selection = gets.chomp.to_i
         break if Array(min_value..max_value).include?(selection)
 
-        puts "Please limit your responses to numbers between '1' and '#{max_value}'"
+        puts "Please limit your responses to numbers between '1' and '#{max_value}'".red
       end
       selection
     end

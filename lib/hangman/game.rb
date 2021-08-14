@@ -45,7 +45,7 @@ module Hangman
       if keywords.include?(guess)
         evaluate_keywords
       elsif already_guessed?
-        puts "You have already guessed that letter. Please try again"
+        puts "You have already guessed that letter. Please try again".red
       elsif word.include?(guess)
         cipher.update_cipher(guess)
       else
