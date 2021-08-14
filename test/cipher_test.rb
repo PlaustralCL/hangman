@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require_relative "../lib/hangman/cipher.rb"
+require_relative "../lib/hangman"
 
 # Tests for class Cipher
 class CipherTest < Minitest::Test
@@ -17,7 +17,6 @@ class CipherTest < Minitest::Test
   end
 
   def test_blank_cipher_has_all_blanks
-    word = define_word
     assert_equal("_ _ _ _ _ _ _ ", cipher.show_cipher)
   end
 
@@ -36,6 +35,4 @@ class CipherTest < Minitest::Test
     skip
     assert_equal([1, 5], cipher.find_indicies("a"))
   end
-
-
 end

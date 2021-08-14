@@ -2,7 +2,7 @@
 
 # require "test_helper"
 require "stringio"
-require_relative "../lib/hangman/player"
+require_relative "../lib/hangman"
 
 # Tests for class Player
 class PlayerTest < Minitest::Test
@@ -32,7 +32,7 @@ class PlayerTest < Minitest::Test
     $stdout = string_output
     $stdin = string_io
     player.new_guess
-    assert_equal("z ", player.update_wrong_guesses)
+    assert_equal("z ", player.update_wrong_guesses.join)
   end
 
   def test_new_guess_rejects_bad_input

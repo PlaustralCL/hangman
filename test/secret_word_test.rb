@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require_relative "../lib/hangman/secret_word"
+require_relative "../lib/hangman"
 
 # Tests for class SecretWord
 class SecretWordTest < Minitest::Test
