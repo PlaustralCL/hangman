@@ -5,7 +5,13 @@ require "yaml"
 module Hangman
   # File operations for saving a game
   class GameFile
-    attr_reader :yaml, :filename
+    private
+
+    attr_reader :yaml
+
+    public
+
+    attr_reader :filename
 
     def initialize(data)
       @yaml = _yaml(data)

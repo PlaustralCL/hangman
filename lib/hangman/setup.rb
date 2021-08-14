@@ -6,7 +6,11 @@ require_relative "../hangman"
 module Hangman
   # Setup for a new game
   class Setup
+    private
+
     attr_reader :secret_word, :cipher, :player
+
+    public
 
     def initialize
       welcome
@@ -15,6 +19,8 @@ module Hangman
       game.play
       game_end
     end
+
+    private
 
     def game_end
       puts "You guessed the word!" if solved?
@@ -36,7 +42,6 @@ module Hangman
       @secret_word = SecretWord.new
       @cipher = Cipher.new(secret_word.word)
       @player = Player.new
-      # [secret_word, cipher, player]
     end
 
     def saved_game
