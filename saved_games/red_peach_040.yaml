@@ -1,0 +1,33 @@
+---
+:secret_word: !ruby/object:Hangman::SecretWord
+  word: valveless
+:cipher: !ruby/object:Hangman::Cipher
+  secret_word: valveless
+  cipher:
+  - _
+  - " "
+  - a
+  - " "
+  - _
+  - " "
+  - _
+  - " "
+  - e
+  - " "
+  - _
+  - " "
+  - e
+  - " "
+  - s
+  - " "
+  - s
+  - " "
+:wrong_guesses: !ruby/object:Hangman::Player
+  wrong_guesses:
+  - h
+  - " "
+  - t
+  - " "
+  - r
+  - " "
+  guess: save

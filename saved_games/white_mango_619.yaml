@@ -1,0 +1,25 @@
+---
+:secret_word: !ruby/object:Hangman::SecretWord
+  word: hangman
+:cipher: !ruby/object:Hangman::Cipher
+  secret_word: hangman
+  cipher:
+  - h
+  - " "
+  - a
+  - " "
+  - _
+  - " "
+  - _
+  - " "
+  - _
+  - " "
+  - a
+  - " "
+  - _
+  - " "
+:wrong_guesses: !ruby/object:Hangman::Player
+  wrong_guesses:
+  - z
+  - " "
+  guess: save
