@@ -4,7 +4,7 @@ require "yaml"
 require_relative "./game_file"
 
 module Hangman
-  # Tracks the status of the game
+  # Coordinates the in-game action
   class Game
     attr_reader :secret_word, :cipher, :player
 

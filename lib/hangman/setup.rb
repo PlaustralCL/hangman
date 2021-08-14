@@ -2,10 +2,13 @@
 
 require "yaml"
 require_relative "../hangman"
+require_relative "../file_operations"
 
 module Hangman
-  # Setup for a new game
+  # Coordinates the activities outside of actual playing
   class Setup
+    include FileOperations
+
     private
 
     attr_reader :secret_word, :cipher, :player
@@ -45,10 +48,10 @@ module Hangman
     end
 
     def saved_game
-      entries = find_files
-      show_files(entries)
+      entries = find_files("saved_games")
+      list_files(entries)
       filename = "saved_games/#{choose_file(entries)}"
-      read_file(filename)
+      load_file(filename)
     end
 
     def choose_file(entries)
@@ -67,22 +70,11 @@ module Hangman
       selection
     end
 
-    def read_file(filename)
-      game_state = YAML.load(File.read(filename))
+    def load_file(filename)
+      game_state = load_yaml(filename)
       @secret_word = game_state[:secret_word]
       @cipher = game_state[:cipher]
       @player = game_state[:wrong_guesses]
-    end
-
-    def find_files
-      Dir.entries("saved_games").sort[2..-1]
-    end
-
-    def show_files(entries)
-      puts "\n(#)  File name\n\n"
-      entries.each_with_index do |file, index|
-        puts "(#{index + 1})   #{file}\n\n"
-      end
     end
 
     def welcome
