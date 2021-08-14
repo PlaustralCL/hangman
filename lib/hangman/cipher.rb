@@ -31,7 +31,7 @@ module Hangman
 
     def _cipher
       @cipher ||= []
-      blank_cipher if cipher.length == 0
+      blank_cipher if cipher.length.zero?
     end
 
     def blank_cipher
@@ -42,13 +42,8 @@ module Hangman
     end
 
     def find_indicies(letter)
-      indicies = []
-      secret_word.split("").each_with_index do |ltr, index|
-        indicies.push(index) if ltr == letter
-      end
-      indicies
+      word = secret_word.chars
+      word.each_index.select { |index| word[index] == letter }
     end
-
-
   end
 end

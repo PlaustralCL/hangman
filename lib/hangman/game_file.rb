@@ -22,8 +22,11 @@ module Hangman
     private
 
     def _filename
-      color = %w[aqua black blue fuchsia gray green lime maroon navy olive purple red silver teal white and yellow]
-      fruit = %w[apple apricot avocado banana blackberry blueberry cherry fig gooseberry grape plum lemon lime mango papaya peach pear pineapple raspberry strawberry]
+      color = %w[aqua black blue fuchsia gray green lime maroon navy olive purple
+                 red silver teal white and yellow]
+      fruit = %w[apple apricot avocado banana blackberry blueberry cherry fig
+                 gooseberry grape plum lemon lime mango papaya peach pear pineapple
+                 raspberry strawberry]
       number = Time.now.to_i.to_s[-3..-1]
       @filename = "saved_games/#{color.sample}_#{fruit.sample}_#{number}.yaml"
     end
@@ -31,6 +34,5 @@ module Hangman
     def _yaml(data)
       @yaml = YAML.dump(data)
     end
-
   end
 end

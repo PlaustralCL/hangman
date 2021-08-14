@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Hangman
-
   # Interact with the player
   class Player
     attr_reader :guess, :wrong_guesses
@@ -13,12 +12,10 @@ module Hangman
     end
 
     def new_guess
-      guess_message
-      @guess = gets.chomp.downcase
+      print "Please enter a letter between a - z, save, or quit: "
+      input_guess
       puts ""
-      return guess if keywords? || valid_input?
-
-      new_guess
+      guess
     end
 
     def update_wrong_guesses
@@ -45,16 +42,21 @@ module Hangman
       end
     end
 
+    def input_guess
+      loop do
+        @guess = gets.chomp.downcase
+        break if valid_input?
+
+        puts "Please limit your responses to letters between 'a' - 'z', 'save', or 'quit':"
+      end
+    end
+
     def valid_input?
-      @guess.length == 1 && @guess =~ /[a-z]{1}/
+      (@guess.length == 1 && @guess =~ /[a-z]{1}/) || keywords?
     end
 
     def keywords?
       guess == "save" || guess == "quit"
-    end
-
-    def guess_message
-      print "Please enter a letter between a - z, save, or quit: "
     end
   end
 end

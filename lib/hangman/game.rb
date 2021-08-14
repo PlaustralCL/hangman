@@ -4,7 +4,6 @@ require "yaml"
 require_relative "./game_file"
 
 module Hangman
-
   # Tracks the status of the game
   class Game
     attr_reader :secret_word, :cipher, :player
@@ -20,7 +19,6 @@ module Hangman
       show_wrong_guess
       while current_wrong_guesses < allowed_wrong_guesses
         play_one_round
-        show_cipher
         break if cipher.solved?
 
         show_wrong_guess
@@ -40,6 +38,7 @@ module Hangman
     def play_one_round
       player.new_guess
       evaluate_guess
+      show_cipher
     end
 
     def evaluate_guess
