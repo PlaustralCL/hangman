@@ -8,3 +8,8 @@ restarted. A full description can be found at [The Odin Project.](https://www.th
 You can try the game at [replit.com](https://replit.com/@PlaustralCL/hangman#README.md).
 
 View the [source code on github](https://github.com/PlaustralCL/hangman)
+
+## Reflections
+* The actual reading and writing to a file is not difficult. The tricky practice
+was making sure that the saved game data was easily incorporated back into the game.
+* Still trying to get used to the OOP approach
